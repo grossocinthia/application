@@ -57,6 +57,9 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.requiresChannel()
+      .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+      .requiresSecure();
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
@@ -67,4 +70,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-}
+     
+    
+  }
+
