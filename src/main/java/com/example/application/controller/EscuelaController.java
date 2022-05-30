@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://appcinthiagrosso.web.app/")
 @RequestMapping (path= "application/escuela")
 public class EscuelaController extends CommonControllerImpl <Escuela, EscuelaService> {
     
